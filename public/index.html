@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- <html lang="da"> -->
+
+  <head>
+    <!-- facebook Open Graph meta tags -->
+    <meta property="og:title" content="______" />
+    <meta property="og:url" content="______" />
+    <meta property="og:image" content="%PUBLIC_URL%/seo_pics/______" />
+    <!-- <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" /> -->
+    <meta property="og:type" content="website" />
+    <meta property="og:description"
+        content="______" />
+    <meta property="og:locale" content="en" />
+    <!-- facebook Open Graph meta tags ends here -->
+
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg" href="%PUBLIC_URL%/seo_pics/______">
+    <title>______</title>
+    <meta name="title" content="______" />
+    <meta name="description"
+        content="______">
+    <meta name="keywords"
+        content="______">
+    <meta name="robots" content="all" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- PWA stuff goes here -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" defer>
+    <!-- <script src="%PUBLIC_URL%/serviceWorker.js" defer></script> -->
+    <meta name="theme-color" content="______"/>
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/seo_pics/______">
+    <meta name="color-scheme" content="light only">
+    
+    <script defer>
+          if (navigator && navigator.serviceWorker) {
+      navigator.serviceWorker.register('/serviceWorker.js')
+      .then((reg) => console.log('Service worker is registreded',reg))
+      .catch((err) => console.log('Service worker is not registreded',err))
+    }
+    </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>

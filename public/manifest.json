@@ -1,0 +1,64 @@
+{
+  "name": "______",
+  "short_name": "______",
+  "description": "______",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "______",
+  "theme_color": "______",
+  "icons": [
+    {
+      "src": "______",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "______",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "______",
+      "type": "image/png",
+      "sizes": "120x120"
+    },
+    {
+      "src": "______",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "______",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "______",
+      "type": "image/png",
+      "sizes": "x152"
+    },
+    {
+      "src": "______",
+      "type": "image/png",
+      "sizes": "180x180"
+    },
+    {
+      "src": "______",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "______",
+      "type": "image/png",
+      "sizes": "384x384"
+    },
+    {
+      "src": "______",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+
+}
