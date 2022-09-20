@@ -24,8 +24,12 @@ export const Meta = (props) => {
 
   const str = props.title;
 
-// Replacing " " (space) to "" empty space
-const FriendlyTitle = str.replace(/ /g, '')
+// Replacing "&" to "" (empty space)
+const NotFriendlyTitle = str.replace("&", '')
+
+// Replacing " " (space) to "" (empty space)
+const FriendlyTitle = NotFriendlyTitle.replace(/ /g, '')
+
   return (
 	
     <main id={FriendlyTitle}>

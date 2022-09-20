@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -13,6 +15,7 @@
 $Prim: #d39d5b;
 $Sec: #ad7a51;
 $Third: #30454c;
+$Playfair: "Playfair Display", serif;
 
 body {
   overflow-x: hidden;
@@ -31,7 +34,8 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background: #30454cc5;
+  backdrop-filter: blur(14.5px);
   overflow: hidden;
   width: 100vw;
   height: 100vh;
@@ -41,15 +45,26 @@ h1 {
   }
 }
 header {
+  background-color: white;
   width: 100%;
   height: 20vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 4vw;
-
-  img {
-    height: 50%;
+  position: sticky;
+  top: 0;
+  transition: 0.2s;
+  &#Hide {
+    top: -20vw;
+  }
+  a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    img {
+      height: 50%;
+    }
   }
 
   #Search {
@@ -58,6 +73,7 @@ header {
     height: fit-content;
     div {
       display: flex;
+      justify-content: center;
       opacity: 50%;
       &:hover {
         opacity: 100%;
@@ -65,7 +81,7 @@ header {
     }
     input {
       height: 7vw;
-      width: 90%;
+      width: 70%;
       padding: 2vw;
       border: 0;
       border-bottom: 1px solid gray;
@@ -123,7 +139,11 @@ header {
   }
   .hamburger-react {
     color: $Prim;
+    fill: $Prim;
     z-index: 900;
+    div {
+      color: $Prim;
+    }
   }
   .notActive,
   .Active {
@@ -139,19 +159,21 @@ header {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      text-align: center;
-      gap: 5vw;
+      gap: 6vw;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       background-color: $Third;
       transition: ease-out 0.5s;
+
+      background: #30454cc5;
+      backdrop-filter: blur(14.5px);
       li {
         a {
-          font-size: 3em;
+          text-transform: uppercase;
+          font-size: 6vw;
           color: white;
-          text-align: center;
           &.active {
             color: $Prim;
           }
@@ -179,6 +201,12 @@ main {
     width: 100%;
     display: flex;
     flex-direction: column;
+
+    figure {
+      display: flex;
+      flex-direction: column;
+      box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #ffffff;
+    }
     figcaption {
       border: 2px solid $Sec;
       text-align: right;
@@ -198,23 +226,127 @@ main {
       }
       h2 {
         color: $Prim;
-        font-size: 8vw;
+        font-size: 7vw;
+        font-family: $Playfair;
       }
       h3 {
         font-size: 5vw;
         text-transform: uppercase;
         font-weight: 300;
-        line-height: 1;
+        line-height: 1.5;
       }
     }
     img {
       width: 100%;
-      border: 20px solid $Sec;
+      border: 10px solid $Sec;
     }
   }
+
   &#Home {
     h1 {
       display: none;
+    }
+    #ThreeCards {
+      padding-top: 10vw;
+      width: 80%;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 5vw;
+      figure {
+        box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #ffffff;
+        display: flex;
+        flex-direction: column;
+        figcaption {
+          border: 2px solid $Sec;
+          text-align: right;
+          padding: 5vw;
+          p {
+            font-size: 3vw;
+            text-transform: uppercase;
+            &.Dato {
+              font-size: 4vw;
+              font-weight: 600;
+              padding-bottom: 3vw;
+            }
+          }
+          hr {
+            margin-bottom: 5vw;
+            border: solid 1px;
+          }
+          h2 {
+            color: $Prim;
+            font-size: 6vw;
+            font-family: $Playfair;
+          }
+          h3 {
+            font-size: 4vw;
+            text-transform: uppercase;
+            font-weight: 300;
+            line-height: 1;
+          }
+        }
+        img {
+          width: 100%;
+          border: 10px solid $Sec;
+        }
+      }
+    }
+  }
+  &#Forestillingerevents {
+    h1 {
+      display: none;
+    }
+    #AllCards {
+      padding-top: 10vw;
+      width: 100%;
+      display: flex;
+      gap: 4vw;
+      flex-direction: column;
+
+      #Oversigt {
+        text-align: right;
+        font-family: $Playfair;
+        font-size: 10vw;
+        text-transform: capitalize;
+        color: $Prim;
+      }
+
+      figure {
+        height: 20vw;
+        display: flex;
+        box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #ffffff;
+      }
+      figcaption {
+        width: 100%;
+        border: 2px solid $Sec;
+        text-align: left;
+        padding: 3vw;
+        display: flex;
+        p {
+          font-size: 2vw;
+          text-transform: uppercase;
+          &.Dato {
+            font-size: 2vw;
+            font-weight: 600;
+            padding-bottom: 3vw;
+          }
+        }
+        hr {
+          border: solid 1px;
+        }
+        h2 {
+          color: $Prim;
+          font-size: 5vw;
+          font-family: $Playfair;
+        }
+      }
+      img {
+        height: 100%;
+        width: 20vw;
+        object-fit: cover;
+        border: 3px solid $Sec;
+      }
     }
   }
   &#Login {
@@ -278,14 +410,14 @@ main {
   }
 }
 footer {
-  padding: 4vw 4vw 10vw;
+  padding: 4vw 4vw 8vw;
   background-color: $Third;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 5vw;
+  gap: 3vw;
   article {
     display: flex;
     justify-content: space-between;
@@ -296,10 +428,12 @@ footer {
         color: white;
         text-transform: uppercase;
         font-size: 4vw;
+        padding-bottom: 1.3vw;
       }
       li {
         color: white;
         font-size: 3vw;
+        line-height: 1.3;
         a {
           color: white;
         }

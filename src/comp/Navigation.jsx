@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import { Squash as Hamburger, Squash } from "hamburger-react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../page/login/Auth.js";
 import { Login } from "../page/login/Login.jsx";
-
 
 
 export const Nav = (props) => {
@@ -20,10 +19,16 @@ export const Nav = (props) => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/products" onClick={props.click}>
-            products
+          <NavLink to="/Forestillinger_Events" onClick={props.click}>
+          forestillinger &amp; events
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/products" onClick={props.click}>
+          SKUESPILLERE
+          </NavLink>
+        </li>
+
         <li>
           <NavLink to="/Login" onClick={props.click}>
             {loginData.access_token ? "Log ud" : "Login"}

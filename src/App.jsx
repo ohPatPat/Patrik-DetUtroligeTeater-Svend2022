@@ -17,7 +17,7 @@ import { Loader } from "./comp/PageLoader.jsx";
 
 import { ProductList } from "./page/products/ProductList.jsx";
 import { ProductDetails } from "./page/products/ProductDetails.jsx";
-import { Products } from "./page/products/Products.jsx";
+import { Forestillinger_Events } from "./page/products/Forestillinger_Events.jsx";
 
 const Redirect = ({ to }) => {
   let navigate = useNavigate();
@@ -43,8 +43,8 @@ function App() {
           {/* Normal "routes" */}
           <Route path="/Login" element={<Login title={"Login"} />} />
 
-          <Route path="/products">
-            <Route index element={<Products title={"Products"} />}></Route>
+          <Route path="/Forestillinger_Events">
+            <Route index element={<Forestillinger_Events title={"Forestillinger & events"} />}></Route>
             <Route path=":group_id">
               <Route
                 index

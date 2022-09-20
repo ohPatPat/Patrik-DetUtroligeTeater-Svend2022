@@ -15,7 +15,7 @@ export const Loader = () => {
   return (
     <section id={playAnimation ? "LoaderComplete" : "LoaderWrapper"}>
       <RotatingLines id="Loader"
-        strokeColor="deeppink"
+        strokeColor="#d39d5b"
         strokeWidth="3"
         animationDuration="1"
       />
