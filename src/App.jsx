@@ -1,6 +1,6 @@
 import "./App.scss";
-import { Footer } from "./comp/footer/Footer.jsx";
-import { Header } from "./comp/header/Header.jsx";
+import { Footer } from "./comp/Footer.jsx";
+import { Header } from "./comp/Header.jsx";
 import {
   BrowserRouter as Router,
   Routes,
@@ -65,9 +65,8 @@ function App() {
           {/* "Route" for not pages that cant be found */}
           <Route path="*" element={<NotFound title={"PageNotFound"} />} />
         </Routes>
+        <Footer></Footer>
       </Router>
-
-      <Footer></Footer>
     </>
   );
 }

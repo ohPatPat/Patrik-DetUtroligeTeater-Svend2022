@@ -1,61 +1,61 @@
 {
-  "name": "______",
-  "short_name": "______",
-  "description": "______",
+  "name": "Det Utrolige Teater",
+  "short_name": "DetUtroligeTeater",
+  "description": "Nystartet familieteater",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "______",
-  "theme_color": "______",
+  "background_color": "#FFFFFF",
+  "theme_color": "#D39D5B",
   "icons": [
     {
-      "src": "______",
-      "type": "image/png",
+      "src": "seoIcons/Icons_72x72.svg",
+      "type": "image/svg",
       "sizes": "72x72"
     },
     {
-      "src": "______",
-      "type": "image/png",
+      "src": "seoIcons/Icons_96x96.svg",
+      "type": "image/svg",
       "sizes": "96x96"
     },
     {
-      "src": "______",
-      "type": "image/png",
+      "src": "seoIcons/Icons_120x120.svg",
+      "type": "image/svg",
       "sizes": "120x120"
     },
     {
-      "src": "______",
-      "type": "image/png",
+      "src": "seoIcons/Icons_128x128.svg",
+      "type": "image/svg",
       "sizes": "128x128"
     },
     {
-      "src": "______",
-      "type": "image/png",
+      "src": "seoIcons/Icons_144x144.svg",
+      "type": "image/svg",
       "sizes": "144x144"
     },
     {
-      "src": "______",
-      "type": "image/png",
-      "sizes": "x152"
+      "src": "seoIcons/Icons_152x152.svg",
+      "type": "image/svg",
+      "sizes": "152x152"
     },
     {
-      "src": "______",
-      "type": "image/png",
+      "src": "seoIcons/Icons_180x180.svg",
+      "type": "image/svg",
       "sizes": "180x180"
     },
     {
-      "src": "______",
-      "type": "image/png",
+      "src": "seoIcons/Icons_192x192.svg",
+      "type": "image/svg",
       "sizes": "192x192"
     },
     {
-      "src": "______",
-      "type": "image/png",
+      "src": "seoIcons/Icons_384x384.svg",
+      "type": "image/svg",
       "sizes": "384x384"
     },
     {
-      "src": "______",
-      "type": "image/png",
+      "src": "seoIcons/Icons_512x512.svg",
+      "type": "image/svg",
       "sizes": "512x512",
       "purpose": "any maskable"
     }

@@ -6,76 +6,108 @@
   box-sizing: border-box;
   outline: none;
   font-family: "Titillium Web", sans-serif;
+  color: gray;
 }
 
 //COLOR MODS
-$spc: deeppink;
+$Prim: #d39d5b;
+$Sec: #ad7a51;
+$Third: #30454c;
+
 body {
   overflow-x: hidden;
 }
 
 h1 {
   font-size: 2em;
-  color: $spc;
+  color: $Prim;
 }
 
-#LoaderComplete{
+#LoaderComplete {
   display: none;
 }
-#LoaderWrapper{
-position: fixed;
-display: flex;
-justify-content: center;
-align-items: center;
-background-color: white;
-overflow: hidden;
-width: 100vw;
-height: 100vh;
-z-index: 10000;
-svg{
-  width: 50vw;
-}
+#LoaderWrapper {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  svg {
+    width: 50vw;
+  }
 }
 header {
   width: 100%;
+  height: 20vw;
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4vw;
 
-  #Search{
+  img {
+    height: 50%;
+  }
+
+  #Search {
     position: relative;
     width: fit-content;
     height: fit-content;
-    div{
+    div {
       display: flex;
+      opacity: 50%;
+      &:hover {
+        opacity: 100%;
+      }
     }
-    input{
-      height: 5vw;
+    input {
+      height: 7vw;
       width: 90%;
+      padding: 2vw;
+      border: 0;
+      border-bottom: 1px solid gray;
+      &::placeholder {
+        text-transform: uppercase;
+      }
     }
-    button{
-      width: 10%;
-      height: 5vw;
+    button {
+      width: 7vw;
+      height: 7vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 0;
+      border-bottom: 1px solid gray;
+      background-color: white;
+
+      svg {
+        width: 50%;
+        height: 50%;
+      }
     }
   }
-  #SearchResult{
+  #SearchResult {
     position: absolute;
     padding: 3vw;
     width: 100%;
     background-color: white;
     border: solid 1px black;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5vw;
-      p{
-        font-size: 3vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vw;
+    p {
+      font-size: 3vw;
+    }
+    a {
+      color: black;
+      text-decoration: underline;
+      &:hover {
+        font-weight: 600;
       }
-      a{
-        color: black;
-        text-decoration: underline;
-        &:hover{
-          font-weight: 600;
-        }
-      }
+    }
   }
   #HeaderNav {
     display: none;
@@ -85,12 +117,12 @@ header {
     a {
       padding-right: 10px;
       &.active {
-        color: $spc;
+        color: $Prim;
       }
     }
   }
   .hamburger-react {
-    color: $spc;
+    color: $Prim;
     z-index: 900;
   }
   .notActive,
@@ -113,7 +145,7 @@ header {
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: black;
+      background-color: $Third;
       transition: ease-out 0.5s;
       li {
         a {
@@ -121,9 +153,8 @@ header {
           color: white;
           text-align: center;
           &.active {
-            color: $spc;
+            color: $Prim;
           }
-    
         }
       }
     }
@@ -141,9 +172,50 @@ header {
     }
   }
 }
-main{
+main {
   padding: 10vw 5vw;
-  &#Home{
+
+  #Banner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    figcaption {
+      border: 2px solid $Sec;
+      text-align: right;
+      padding: 5vw;
+      p {
+        font-size: 4vw;
+        text-transform: uppercase;
+        &.Dato {
+          font-size: 5vw;
+          font-weight: 600;
+          padding-bottom: 3vw;
+        }
+      }
+      hr {
+        margin-bottom: 5vw;
+        border: solid 1px;
+      }
+      h2 {
+        color: $Prim;
+        font-size: 8vw;
+      }
+      h3 {
+        font-size: 5vw;
+        text-transform: uppercase;
+        font-weight: 300;
+        line-height: 1;
+      }
+    }
+    img {
+      width: 100%;
+      border: 20px solid $Sec;
+    }
+  }
+  &#Home {
+    h1 {
+      display: none;
+    }
   }
   &#Login {
     display: flex;
@@ -154,19 +226,19 @@ main{
       padding-bottom: 4vw;
       b {
         font-weight: 600;
-        color: $spc;
+        color: $Prim;
       }
-
     }
     form {
       display: flex;
       flex-direction: column;
       gap: 4vw;
-      .InputWrapper, .InputWrapperError {
+      .InputWrapper,
+      .InputWrapperError {
         display: flex;
         flex-direction: column;
         gap: 1vw;
-        &.InputWrapperError{
+        &.InputWrapperError {
           input {
             border: solid 1px red;
           }
@@ -190,10 +262,9 @@ main{
         color: red;
         font-size: 3.5vw;
       }
-
     }
     button {
-      background-color: $spc;
+      background-color: $Prim;
       color: white;
       border: none;
       border-radius: 5px;
@@ -207,25 +278,54 @@ main{
   }
 }
 footer {
-  position: absolute;
-  bottom: 0;
-  background-color: $spc;
+  padding: 4vw 4vw 10vw;
+  background-color: $Third;
   width: 100%;
-  height: 100px;
-}
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5vw;
+  article {
+    display: flex;
+    justify-content: space-between;
+    gap: 5vw;
 
+    ul {
+      h3 {
+        color: white;
+        text-transform: uppercase;
+        font-size: 4vw;
+      }
+      li {
+        color: white;
+        font-size: 3vw;
+        a {
+          color: white;
+        }
+      }
+    }
+  }
+  nav {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    gap: 5vw;
+    img {
+      width: 10vw;
+    }
+  }
+}
 
 @media (width > 768px) {
   header {
     #HeaderNav {
       display: block;
-
     }
     .hamburger-react {
       display: none;
     }
   }
-  
 }
 
 @media (width > 1024px) {

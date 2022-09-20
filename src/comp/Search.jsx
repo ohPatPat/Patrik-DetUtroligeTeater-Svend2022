@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
+import { FaSearch } from 'react-icons/fa';
 
 const Search = (props) => {
   const [keyword, setKeyword] = useState("");
@@ -60,7 +61,7 @@ const Search = (props) => {
             onFocus={(e) => (e.target.value = "")}
             onClick={RemoveSearchResult}
           />
-          <button></button>
+          <button><FaSearch /></button>
         </div>
         {keyword && <SearchResult keyword={keyword} />}
       </form>
