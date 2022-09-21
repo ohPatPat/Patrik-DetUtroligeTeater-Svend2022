@@ -147,7 +147,7 @@ header {
   }
   .notActive,
   .Active {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
@@ -155,6 +155,7 @@ header {
     overflow-x: hidden;
     z-index: 899;
     ul {
+      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -164,11 +165,12 @@ header {
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: $Third;
       transition: ease-out 0.5s;
+      overflow-y: hidden;
 
       background: #30454cc5;
       backdrop-filter: blur(14.5px);
+      z-index: 9999;
       li {
         a {
           text-transform: uppercase;
@@ -185,6 +187,7 @@ header {
     pointer-events: none;
     ul {
       margin-left: 100%;
+
     }
   }
   .Active {
@@ -285,6 +288,29 @@ main {
             font-weight: 300;
             line-height: 1;
           }
+          ul {
+            margin-top: 6vw;
+            width: 100%;
+            display: flex;
+            justify-content: right;
+            align-items: center;
+            gap: 2vw;
+        li {
+              a {
+                color: white;
+                text-transform: uppercase;
+                font-weight: 600;
+                padding: 3vw;
+                background-color: $Third;
+              }
+              &:nth-child(2) {
+                a {
+                  background-color: $Prim;
+                }
+              }
+            }
+          }
+    
         }
         img {
           width: 100%;
@@ -305,6 +331,7 @@ main {
       flex-direction: column;
 
       #Oversigt {
+
         text-align: right;
         font-family: $Playfair;
         font-size: 10vw;
@@ -316,29 +343,51 @@ main {
         height: 20vw;
         display: flex;
         box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #ffffff;
+        &:hover {
+          ul {
+            right: 0%;
+          }
+        }
       }
       figcaption {
+        position: relative;
         width: 100%;
         border: 2px solid $Sec;
         text-align: left;
         padding: 3vw;
         display: flex;
-        p {
-          font-size: 2vw;
-          text-transform: uppercase;
-          &.Dato {
-            font-size: 2vw;
-            font-weight: 600;
-            padding-bottom: 3vw;
+        overflow: hidden;
+        transition: 5s;
+        z-index: 0;
+        div {
+          width: 40%;
+          height: 100%;
+          display: flex;
+          justify-content: space-between;
+          &:nth-child(2) {
+            width: 60%;
+            padding-left: 2vw;
+            flex-direction: column;
+          }
+
+          hr {
+            border: solid 1px;
+          }
+          h2 {
+            color: $Prim;
+            font-size: 4.5vw;
+            font-family: $Playfair;
           }
         }
-        hr {
-          border: solid 1px;
-        }
-        h2 {
-          color: $Prim;
-          font-size: 5vw;
-          font-family: $Playfair;
+        p {
+          font-size: 3vw;
+          text-transform: uppercase;
+          &.Dato {
+            font-size: 4vw;
+            font-weight: 600;
+            line-height: 1;
+            padding-bottom: 3vw;
+          }
         }
       }
       img {
@@ -346,6 +395,33 @@ main {
         width: 20vw;
         object-fit: cover;
         border: 3px solid $Sec;
+      }
+      ul {
+        background-color: $Sec;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: -100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5vw;
+        transition: 1s;
+    li {
+          a {
+            color: white;
+            text-transform: uppercase;
+            font-weight: 600;
+            padding: 3vw;
+            background-color: $Third;
+          }
+          &:nth-child(2) {
+            a {
+              background-color: $Prim;
+            }
+          }
+        }
       }
     }
   }

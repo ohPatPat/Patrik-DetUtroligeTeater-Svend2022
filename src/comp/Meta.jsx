@@ -38,3 +38,37 @@ const FriendlyTitle = NotFriendlyTitle.replace(/ /g, '')
     </main>
   );
 };
+
+
+
+export const MetaDetails = (props) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.title = props.title;
+    if (props.description) {
+      document
+        .querySelector('meta[name="description"]')
+        .setAttribute("content", props.description);
+    }
+	if (props.title) {
+		document
+		  .querySelector('meta[name="title"]')
+		  .setAttribute("content", props.title);
+	  }
+  	if (props.title) {
+		document
+		  .querySelector('meta[property="og:title"]')
+		  .setAttribute("content", props.title);
+	  }
+
+  }, [props.title, props.description]);
+
+  return (
+	
+    <main id="ProductDetails">
+		<h1>{props.title}</h1>
+      {props.children}
+    </main>
+  );
+};
+

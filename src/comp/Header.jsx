@@ -1,7 +1,6 @@
 import React, { useState, useEffect  } from "react";
 
 import { NavLink } from "react-router-dom";
-import { Login } from "../page/login/Login.jsx";
 import { useAuth } from "../page/login/Auth.js";
 import { Search } from "./Search.jsx";
 import { Nav, BurgerMenu } from "./Navigation.jsx";
@@ -32,7 +31,7 @@ function useScrollDirection() {
 
 
 export const Header = () => {
-  const { loginData } = useAuth(Login);
+  const { loginData } = useAuth();
   const scrollDirection = useScrollDirection();
   return (
     <header id={ scrollDirection === "down" ? "Hide" : "Show"}>

@@ -5,7 +5,7 @@ export const Forestillinger_Events = (props) => {
   return (
     <Meta title={props.title}>
       <Banner />
-	  <AllCards />
+      <AllCards />
     </Meta>
   );
 };

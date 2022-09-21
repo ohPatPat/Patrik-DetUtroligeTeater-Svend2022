@@ -2,6 +2,33 @@ import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
+const FriendlyDate = (prop) => {
+  const startarray = prop.startdate.split("-");
+  const stoparray = prop.stopdate.split("-");
+
+  const month = [
+    "Januar",
+    "Februar",
+    "Marts",
+    "April",
+    "Maj",
+    "Juni",
+    "Juli",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const startDate = startarray[2] + ". " + month[startarray[1] - 1];
+  const stopDate =
+    stoparray[2] + ". " + month[stoparray[1] - 1] + " " + stoparray[0];
+
+  return startDate + " - " + stopDate;
+};
 
 export const Banner = () => {
   const [isFetchEvents, setFetchEvents] = useState();
@@ -29,22 +56,22 @@ export const Banner = () => {
               <figcaption>
                 <p className="Scene">{apiRoute.stage_name}</p>
                 <p className="Dato">
-                  {apiRoute.startdate}-{apiRoute.stopdate}
+                  {FriendlyDate({
+                    startdate: apiRoute.startdate,
+                    stopdate: apiRoute.stopdate,
+                  })}
                 </p>
                 <hr />
                 <h2>{apiRoute.title}</h2>
                 <h3>{apiRoute.genre}</h3>
               </figcaption>
-              <img src={apiRoute.image} alt={apiRoute.image} />
+              <img src={apiRoute.image_large} alt={apiRoute.image_large} />
             </figure>
           );
         })}
     </section>
   );
 };
-
-
-
 
 export const ThreeCards = () => {
   const [isFetchEvents, setFetchEvents] = useState();
@@ -69,26 +96,33 @@ export const ThreeCards = () => {
         isFetchEvents.slice(0, 3).map((apiRoute, i) => {
           return (
             <figure key={i}>
-              <img src={apiRoute.image} alt={apiRoute.image} />
+              <img src={apiRoute.image_medium} alt={apiRoute.image_medium} />
               <figcaption>
                 <p className="Scene">{apiRoute.stage_name}</p>
                 <p className="Dato">
-                  {apiRoute.startdate}-{apiRoute.stopdate}
+                  {FriendlyDate({
+                    startdate: apiRoute.startdate,
+                    stopdate: apiRoute.stopdate,
+                  })}
                 </p>
                 <hr />
                 <h2>{apiRoute.title}</h2>
                 <h3>{apiRoute.genre}</h3>
+                <ul>
+                  <li>
+                    <NavLink to={`/Forestillinger_Events/${apiRoute.id}`}>læs mere</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/">køb billet</NavLink>
+                  </li>
+                </ul>
               </figcaption>
-
             </figure>
           );
         })}
     </section>
   );
 };
-
-
-
 
 export const AllCards = () => {
   const [isFetchEvents, setFetchEvents] = useState();
@@ -114,21 +148,33 @@ export const AllCards = () => {
         isFetchEvents.map((apiRoute, i) => {
           return (
             <figure key={i}>
-              <img src={apiRoute.image} alt={apiRoute.image} />
-              <figcaption>
-                <h2>{apiRoute.title}</h2>
-                <hr />
-                <p className="Scene">{apiRoute.stage_name}</p>
-                <p className="Dato">
-                  {apiRoute.startdate}-{apiRoute.stopdate}
-                </p>
+              <img src={apiRoute.image_small} alt={apiRoute.image_small} />
+              <figcaption className="figcaption">
+                <div>
+                  <h2>{apiRoute.title}</h2>
+                  <hr />
+                </div>
+                <div>
+                  <p className="Scene">{apiRoute.stage_name}</p>
+                  <p className="Dato">
+                    {FriendlyDate({
+                      startdate: apiRoute.startdate,
+                      stopdate: apiRoute.stopdate,
+                    })}
+                  </p>
+                </div>
+                <ul>
+                  <li>
+                    <NavLink to={`${apiRoute.id}`}>læs mere</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/">køb billet</NavLink>
+                  </li>
+                </ul>
               </figcaption>
-
             </figure>
           );
         })}
     </section>
   );
 };
-
-

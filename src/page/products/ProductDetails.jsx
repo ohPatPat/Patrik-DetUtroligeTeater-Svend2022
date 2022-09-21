@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Meta } from "../../comp/Meta.jsx";
+import { CommentsForm, CommentsList } from "../../comp/Comments.jsx";
+import { Meta, MetaDetails } from "../../comp/Meta.jsx";
 
 export const ProductDetails = (props) => {
 	const { product_id } = useParams();
@@ -10,7 +11,7 @@ export const ProductDetails = (props) => {
 	useEffect(() => {
 		const getProductData = async () => {
 			try {
-				const result = await axios.get(`https://api.mediehuset.net/stringsonline/products/${product_id}`)
+				const result = await axios.get(`https://api.mediehuset.net/detutroligeteater/events/${product_id}`)
 				setProductData(result.data.item);
 			}
 			catch(err) {
@@ -21,16 +22,9 @@ export const ProductDetails = (props) => {
 	}, [product_id])
 
 	return (
-		<Meta title={productData.name}>
-			{productData ? (
-				<div>
-					<h2>{productData.name}</h2>
-					{productData.image && productData.image.fullpath && (
-						<img src={productData.image.fullpath} alt="" />
-					)}
-					<p className="nl2br">{productData.description_long}</p>
-				</div>
-			) : null}
-		</Meta>
+		<MetaDetails title={productData.title}>
+			<CommentsList />
+			<CommentsForm />
+		</MetaDetails>
 	)
 }

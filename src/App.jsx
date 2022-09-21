@@ -13,7 +13,7 @@ import { useAuth } from "./page/login/Auth.js";
 import { Home } from "./page/Home.jsx";
 import { Login } from "./page/login/Login.jsx";
 import { Profile } from "./page/Profile.jsx";
-import { Loader } from "./comp/PageLoader.jsx";
+import { Loader, useLoader } from "./comp/PageLoader.jsx";
 
 import { ProductList } from "./page/products/ProductList.jsx";
 import { ProductDetails } from "./page/products/ProductDetails.jsx";
@@ -27,15 +27,14 @@ const Redirect = ({ to }) => {
   return null;
 };
 
-// cake
 function App() {
-  const { loginData } = useAuth(Login);
+  const { loginData } = useAuth();
 
   return (
     <>
       <Loader />
       <Router>
-        <Header></Header>
+        <Header />
         <Routes>
           {/* Start "route" */}
           <Route index element={<Home title={"Home"} />} />
@@ -43,19 +42,14 @@ function App() {
           {/* Normal "routes" */}
           <Route path="/Login" element={<Login title={"Login"} />} />
 
-          <Route path="/Forestillinger_Events">
-            <Route index element={<Forestillinger_Events title={"Forestillinger & events"} />}></Route>
-            <Route path=":group_id">
-              <Route
-                index
-                element={<ProductList title={"ProductList"} />}
-              ></Route>
-              <Route
-                path=":product_id"
-                element={<ProductDetails title={"ProductDetails"} />}
-              ></Route>
-            </Route>
-          </Route>
+          <Route
+            path="/Forestillinger_Events"
+            element={
+              <Forestillinger_Events title={"Forestillinger & events"} />} />
+
+          <Route
+            path="/Forestillinger_Events/:product_id"
+            element={<ProductDetails title={"ProductDetails"} />} />
 
           {/* "Route" for when "login-in" */}
           {loginData.access_token && (
