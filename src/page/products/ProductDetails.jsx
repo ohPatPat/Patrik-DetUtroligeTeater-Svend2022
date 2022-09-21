@@ -5,7 +5,6 @@ import { CommentsForm, CommentsList } from "../../comp/Comments.jsx";
 import { Meta, MetaDetails } from "../../comp/Meta.jsx";
 
 const FriendlyDate = (props) => {
-  console.log(props);
   const startarray = props.startdate.split("-");
   const stoparray = props.stopdate.split("-");
 
@@ -49,29 +48,39 @@ export const ProductDetails = (props) => {
   }, [product_id]);
   return (
     <MetaDetails title={productData.title}>
-      <img src={productData.image_large} alt="" />
-      <section id="InfoWrapper">
-        <div>
-          <p className="Scene">{productData.stage_name}</p>
-          <p className="Dato">
-            {productData.startdate &&
-              FriendlyDate({
-                startdate: productData.startdate,
-                stopdate: productData.stopdate,
-              })}
-          </p>
-        </div>
-        <p>BILLETPRIS: {productData.price} DKK</p>
-      </section>
-      <section id="TitleWrapper">
-        <h1>{productData.Title}</h1>
-        <p>
-          <NavLink to={"/"}>Køb billet</NavLink>
-        </p>
-      </section>
+      <figure>
+        <img src={productData.image_large} alt="" />
+        <figcaption>
+          <section id="InfoWrapper">
+            <div>
+              <p className="Scene">{productData.stage_name}</p>
+              <p className="Dato">
+                {productData.startdate &&
+                  FriendlyDate({
+                    startdate: productData.startdate,
+                    stopdate: productData.stopdate,
+                  })}
+              </p>
+            </div>
+            <p className="Pris">BILLETPRIS: {productData.price} DKK</p>
+            <hr />
+          </section>
+          <section id="TitleWrapper">
+            <h1>{productData.title}</h1>
+            <p>
+              <NavLink to={"/"}>Køb billet</NavLink>
+            </p>
+          </section>
+          <section id="DetailsWrapper">
+            <h2>{productData.genre}</h2>
+            <p>{productData.description}</p>
+			
+          </section>
 
-      {/* <CommentsList product_id={product_id} />
+          {/* <CommentsList product_id={product_id} />
       <CommentsForm /> */}
+        </figcaption>
+      </figure>
     </MetaDetails>
   );
 };

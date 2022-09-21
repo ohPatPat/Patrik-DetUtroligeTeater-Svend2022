@@ -66,7 +66,6 @@ export const MetaDetails = (props) => {
   return (
 	
     <main id="ProductDetails">
-		<h1>{props.title}</h1>
       {props.children}
     </main>
   );

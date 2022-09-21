@@ -423,13 +423,80 @@ main {
     }
   }
   &#ProductDetails {
-    h1 {
-      display: none;
+    figure {
+      display: flex;
+      flex-direction: column;
     }
     img {
       width: 100%;
       border: 10px solid $Sec;
     }
+    figcaption {
+      border: 2px solid $Sec;
+      padding: 3vw;
+    }
+    #InfoWrapper {
+      div {
+        display: flex;
+        justify-content: space-between;
+        gap: 2vw;
+        .Scene {
+          text-transform: uppercase;
+          font-weight: 600;
+          font-size: 3.5vw;
+        }
+        .Dato {
+          font-size: 3.5vw;
+        }
+      }
+      .Pris {
+        text-align: right;
+        font-size: 3.5vw;
+        margin-top: 2vw;
+      }
+      hr {
+        margin: 2vw 0 4vw;
+      }
+    }
+    #TitleWrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      h1 {
+        font-family: $Playfair;
+        font-size: 6vw;
+      }
+      p {
+        a {
+          color: white;
+          text-transform: uppercase;
+          font-weight: 600;
+          padding: 2vw;
+          background-color: $Sec;
+          font-size: 3vw;
+        }
+      }
+    }
+    #DetailsWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 2vw;
+      h2 {
+        font-size: 5vw;
+        font-weight: 400;
+      }
+      p {
+        a {
+          color: white;
+          text-transform: uppercase;
+          font-weight: 600;
+          padding: 2vw;
+          background-color: $Sec;
+          font-size: 3vw;
+        }
+      }
+    }
+
   }
   &#Login {
     display: flex;
