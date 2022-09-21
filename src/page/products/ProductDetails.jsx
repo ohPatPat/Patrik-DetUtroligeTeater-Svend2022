@@ -31,6 +31,18 @@ const FriendlyDate = (props) => {
 };
 
 export const ProductDetails = (props) => {
+  const [isShowActors, setShowActors] = useState(false);
+
+  const ShowActors = () => {
+    if (!isShowActors) {
+      setShowActors(true);
+      console.log(isShowActors);
+    } else {
+      setShowActors(false);
+      console.log(isShowActors);
+    }
+  };
+
   const { product_id } = useParams();
   const [productData, setProductData] = useState({});
   useEffect(() => {
@@ -74,11 +86,31 @@ export const ProductDetails = (props) => {
           <section id="DetailsWrapper">
             <h2>{productData.genre}</h2>
             <p>{productData.description}</p>
-			
           </section>
 
-          {/* <CommentsList product_id={product_id} />
-      <CommentsForm /> */}
+          <section id="Actors" onClick={ShowActors}>
+            <h3 id="Oversigt">medvirkende</h3>
+            {isShowActors ? (
+              <div>
+                {productData.actors &&
+                  productData.actors.map((apiRoute, i) => {
+                    return (
+                      <figure key={i}>
+                        <img src={apiRoute.image} alt={apiRoute.image} />
+                        <figcaption className="figcaption">
+                          <h3>{apiRoute.name}</h3>
+                        </figcaption>
+                      </figure>
+                    );
+                  })}
+              </div>
+            ) : (
+              <p>læs mere</p>
+            )}
+            <hr />
+          </section>
+           <CommentsList product_id={product_id} />
+     {/* <CommentsForm /> */}
         </figcaption>
       </figure>
     </MetaDetails>

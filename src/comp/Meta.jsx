@@ -25,10 +25,10 @@ export const Meta = (props) => {
   const str = props.title;
 
 // Replacing "&" to "" (empty space)
-const NotFriendlyTitle = str.replace("&", '')
+const NotFriendlyTitle = str.replaceAll("&", '')
 
 // Replacing " " (space) to "" (empty space)
-const FriendlyTitle = NotFriendlyTitle.replace(/ /g, '')
+const FriendlyTitle = NotFriendlyTitle.replaceAll(/ /g, '')
 
   return (
 	

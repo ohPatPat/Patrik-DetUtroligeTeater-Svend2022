@@ -496,7 +496,66 @@ main {
         }
       }
     }
-
+    #Actors {
+      display: flex;
+      flex-direction: column;
+      gap: 4vw;
+      margin-top: 4vw;
+      figure {
+        &.ShowActors {
+        }
+        &.NotShowActors {
+          display: none;
+        }
+      }
+      figcaption {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      h3 {
+        font-size: 6vw;
+        font-weight: 400;
+        text-transform: uppercase;
+        color: $Prim;
+      }
+      p {
+        text-align: center;
+        color: white;
+        text-transform: uppercase;
+        font-weight: 600;
+        padding: 2vw;
+        background-color: $Sec;
+        font-size: 3vw;
+      }
+    }
+    #Anmeldelser {
+      h3 {
+        font-size: 6vw;
+        font-weight: 400;
+        text-transform: uppercase;
+        color: $Prim;
+        margin-bottom: 3vw;
+      }
+      p{
+        &:nth-child(1){
+          font-size: 4vw;
+        }
+        &:nth-child(2){
+          font-size: 5vw;
+          font-weight: 600;
+          text-transform: uppercase;
+          color: $Prim;  
+          margin-bottom: 2vw;
+        }
+        &:nth-child(3){
+          font-size: 4vw;
+        }
+      }
+      hr{
+        margin: 3vw 0;
+      }
+    }
   }
   &#Login {
     display: flex;
