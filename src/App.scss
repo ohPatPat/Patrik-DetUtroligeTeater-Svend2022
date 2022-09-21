@@ -187,7 +187,6 @@ header {
     pointer-events: none;
     ul {
       margin-left: 100%;
-
     }
   }
   .Active {
@@ -295,7 +294,7 @@ main {
             justify-content: right;
             align-items: center;
             gap: 2vw;
-        li {
+            li {
               a {
                 color: white;
                 text-transform: uppercase;
@@ -310,7 +309,6 @@ main {
               }
             }
           }
-    
         }
         img {
           width: 100%;
@@ -331,7 +329,6 @@ main {
       flex-direction: column;
 
       #Oversigt {
-
         text-align: right;
         font-family: $Playfair;
         font-size: 10vw;
@@ -408,7 +405,7 @@ main {
         align-items: center;
         gap: 5vw;
         transition: 1s;
-    li {
+        li {
           a {
             color: white;
             text-transform: uppercase;
@@ -423,6 +420,15 @@ main {
           }
         }
       }
+    }
+  }
+  &#ProductDetails {
+    h1 {
+      display: none;
+    }
+    img {
+      width: 100%;
+      border: 10px solid $Sec;
     }
   }
   &#Login {

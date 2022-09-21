@@ -10,7 +10,7 @@ const CommentsForm = ({ product_id }) => {
   const { loginData } = useAuth()
 
   const submitForm = async (data, e) => {
-    const endpoint = "https://api.mediehuset.net/snippets/comments"
+    const endpoint = "https://api.mediehuset.net/detutroligeteater/reviews"
     const options = {
       headers: {
         Authorization: `Bearer ${loginData.access_token}`,
@@ -21,17 +21,16 @@ const CommentsForm = ({ product_id }) => {
     console.log(...formData)
     const result = await axios.post(endpoint, formData, options)
     if (result.data.status) {
-      navigate(`/comments/response/${data.product_id}`, { replace: true })
     }
   }
 
   return (
     <form onSubmit={handleSubmit(submitForm)}>
-      <input type="hidden" value={product_id} {...register("product_id")} />
+      <input type="hidden" value={product_id} {...register("event_id")} />
       <div>
-        <label htmlFor="title">Emne</label>
-        <input type="text" {...register("title", { required: true })} />
-        {errors.title && <span>Du skal skrive en titel</span>}
+        <label htmlFor="subject">Emne</label>
+        <input type="text" {...register("subject", { required: true })} />
+        {errors.subject && <span>Du skal skrive en titel</span>}
       </div>
       <div>
         <label htmlFor="comment">Kommentar</label>
@@ -47,22 +46,30 @@ const CommentsForm = ({ product_id }) => {
 
 const CommentsList = () => {
   const { product_id } = useParams()
+  const { event_id } = useParams()
   const [commentData, setCommentData] = useState([])
+  const { loginData } = useAuth()
 
   useEffect(() => {
     const getData = async () => {
-      const endpoint = `https://api.mediehuset.net/snippets/comments/${product_id}`
-      const result = await axios.get(endpoint)
-      setCommentData(result.data.items.reverse())
+      const endpoint = `https://api.mediehuset.net/detutroligeteater/reviews?event_id=${product_id}`
+      const options = {
+        headers: {
+          Authorization: `Bearer ${loginData.access_token}`,
+        },
+      }  
+      const result = await axios.get(endpoint, options)
+      setCommentData(result.data.items)
+      console.log(product_id);
     }
     getData()
   }, [product_id])
 
   return (
   	<div>
-	{commentData && commentData.map(item => {
+	{commentData && commentData.map((apiRoute, i) => {
 		return (
-			<li key={item.id}>{item.title}</li>
+			<li key={i}>{apiRoute.subject}</li>
 		)
 	})}
   	</div>
