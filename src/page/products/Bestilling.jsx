@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import { CommentsForm, CommentsList } from "../../comp/Comments.jsx";
+import { BestilingsForm, CommentsForm, CommentsList } from "../../comp/Comments.jsx";
 import { Meta, MetaDetails } from "../../comp/Meta.jsx";
 import { useAuth } from "../login/Auth.js";
 import { LoginComp } from "../login/Login.jsx";
@@ -29,6 +29,7 @@ export const Bestilling = (props) => {
   return (
     <MetaDetails title={"cake"}>
         <img src={eventData.image_large} alt="" />
+        <BestilingsForm event_id={event_id}/>
     </MetaDetails>
   );
 };

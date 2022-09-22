@@ -85,7 +85,7 @@ export const EventDetails = (props) => {
           <section id="TitleWrapper">
             <h1>{eventData.title}</h1>
             <p>
-              <NavLink to={"/"}>Køb billet</NavLink>
+              <NavLink to={`/Forestillinger_Events/Bestilling/${eventData.id}`}>Køb billet</NavLink>
             </p>
           </section>
           <section id="DetailsWrapper">

@@ -79,6 +79,7 @@ export const CommentsForm = ({ event_id }) => {
           placeholder="Kommentar"
           onFocus={(e) => (e.target.value = "")}
           onClick={inputFocus}
+          type="email"
           {...register("comment", {
             required: true,
             min: 4,
@@ -140,5 +141,175 @@ export const CommentsList = () => {
           );
         })}
     </ul>
+  );
+};
+
+export const BestilingsForm = ({ event_id }) => {
+  const {
+    register,
+    handleSubmit,
+    clearErrors,
+    formState: { errors },
+  } = useForm();
+
+  const [Error, setError] = useState("");
+  const inputFocus = () => {
+    if (Error || errors) {
+      setError();
+      clearErrors();
+    }
+  };
+  const { loginData } = useAuth();
+
+  const submitForm = async (data, e) => {
+    e.target.reset();
+    const formData = new FormData(e.target);
+    formData.append("firstname", data.firstname);
+    formData.append("lastname", data.lastname);
+    formData.append("address", data.address);
+    formData.append("zipcode", data.zipcode);
+    formData.append("email", data.email);
+    try {
+      const endpoint =
+        "https://api.mediehuset.net/detutroligeteater/reservations";
+      const result = await axios.post(endpoint, formData, options);
+      console.log(result);
+      console.log(endpoint);
+      const options = {
+        headers: {
+          Authorization: `Bearer ${loginData.access_token}`,
+        },
+      };
+    } catch (err) {
+      setError("Kunne ikke send");
+    }
+    // console.log(...formData);
+  };
+  return (
+    <form autoComplete="off" onSubmit={handleSubmit(submitForm)}>
+      <input type="hidden" value={event_id} {...register("event_id")} />
+      <div
+        className={
+          Error || errors.firstname ? "InputWrapperError" : "InputWrapper"
+        }
+      >
+        <input
+          placeholder="firstname"
+          onFocus={(e) => (e.target.value = "")}
+          onClick={inputFocus}
+          type="text"
+          {...register("firstname", {
+            required: true,
+            min: 4,
+          })}
+        />
+        {errors.firstname?.type === "required" && (
+          <span>Du skal udfylde firstname</span>
+        )}
+        {errors.firstname?.type === "min" && (
+          <span>Du skal minimum brug 4 bogstaver</span>
+        )}
+      </div>
+      <div
+        className={
+          Error || errors.lastname ? "InputWrapperError" : "InputWrapper"
+        }
+      >
+        <input
+          placeholder="lastname"
+          onFocus={(e) => (e.target.value = "")}
+          onClick={inputFocus}
+          type="text"
+          {...register("lastname", {
+            required: true,
+            min: 4,
+          })}
+        />
+        {errors.lastname?.type === "required" && (
+          <span>Du skal udfylde lastname</span>
+        )}
+        {errors.lastname?.type === "min" && (
+          <span>Du skal minimum brug 4 bogstaver</span>
+        )}
+      </div>
+      <div
+        className={
+          Error || errors.address ? "InputWrapperError" : "InputWrapper"
+        }
+      >
+        <input
+          placeholder="address"
+          onFocus={(e) => (e.target.value = "")}
+          onClick={inputFocus}
+          type="text"
+          {...register("address", {
+            required: true,
+            min: 4,
+          })}
+        />
+        {errors.address?.type === "required" && (
+          <span>Du skal udfylde adress</span>
+        )}
+        {errors.address?.type === "min" && (
+          <span>Du skal minimum brug 4 bogstaver</span>
+        )}
+      </div>
+
+      <div
+        className={
+          Error || errors.zipcode ? "InputWrapperError" : "InputWrapper"
+        }
+      >
+        <input
+          placeholder="zipcode"
+          onFocus={(e) => (e.target.value = "")}
+          onClick={inputFocus}
+          type="number"
+          {...register("zipcode", {
+            required: true,
+            min: 4,
+          })}
+        />
+        {errors.zipcode?.type === "required" && (
+          <span>Du skal udfylde zipcode</span>
+        )}
+        {errors.zipcode?.type === "min" && (
+          <span>Du skal minimum brug 4 bogstaver</span>
+        )}
+      </div>
+
+      <div
+        className={
+          Error || errors.email ? "InputWrapperError" : "InputWrapper"
+        }
+      >
+        <input
+          placeholder="email"
+          onFocus={(e) => (e.target.value = "")}
+          onClick={inputFocus}
+          type="email"
+          {...register("email", {
+            required: true,
+            min: 4,
+          })}
+        />
+        {errors.email?.type === "required" && (
+          <span>Du skal udfylde email</span>
+        )}
+        {errors.email?.type === "min" && (
+          <span>Du skal minimum brug 4 bogstaver</span>
+        )}
+      </div>
+
+
+      <div>
+        <button onClick={inputFocus}>Send</button>
+        <button type="reset" onClick={inputFocus}>
+          Nulstil
+        </button>
+      </div>
+      {/* Tjekker om besked er true og viser den */}
+      {Error && <span>{Error}</span>}
+    </form>
   );
 };
