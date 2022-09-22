@@ -5,7 +5,7 @@ import Icon_LinkIn from "../assets/icons/Icon_LinkIn.svg";
 
 export const Footer = () => {
   return (
-    <footer>
+    <footer id="Footer">
       <article>
         <ul>
           <h3>adresse</h3>

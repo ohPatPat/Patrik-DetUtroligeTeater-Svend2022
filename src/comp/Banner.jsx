@@ -113,7 +113,7 @@ export const ThreeCards = () => {
                     <NavLink to={`/Forestillinger_Events/${apiRoute.id}`}>læs mere</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/">køb billet</NavLink>
+                    <NavLink to={`/Forestillinger_Events/Bestilling/${apiRoute.id}`}>køb billet</NavLink>
                   </li>
                 </ul>
               </figcaption>
@@ -168,7 +168,7 @@ export const AllCards = () => {
                     <NavLink to={`${apiRoute.id}`}>læs mere</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/">køb billet</NavLink>
+                    <NavLink to={`/Forestillinger_Events/Bestilling/${apiRoute.id}`}>køb billet</NavLink>
                   </li>
                 </ul>
               </figcaption>

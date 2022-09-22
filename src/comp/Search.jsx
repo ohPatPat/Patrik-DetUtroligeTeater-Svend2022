@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch } from "react-icons/fa";
 
 const Search = (props) => {
   const [keyword, setKeyword] = useState("");
@@ -13,45 +13,51 @@ const Search = (props) => {
   };
   const RemoveSearchResult = () => {
     if (keyword) {
-      setKeyword()
+      setKeyword("");
     }
   };
 
-
-  const SearchResult = (props) => {
+  const SearchResult = ({ keyword }) => {
     const [searchData, setSearchData] = useState([]);
-    
+
     useEffect(() => {
       const getData = async () => {
         const result = await axios.get(
-          `https://api.mediehuset.net/homelands/search/${props.keyword}`
+          `https://api.mediehuset.net/detutroligeteater/events/search/${keyword}`
         );
         setSearchData(result.data);
       };
       getData();
-    }, [props.keyword, setSearchData]);
-  
+    }, [keyword, setSearchData]);
+
     return (
       <ul id="SearchResult">
         <p>
-          Fandt {searchData.num_items} resultater på ordet <i>{props.keyword}</i>
+          Fandt {searchData.num_items} resultater på ordet <i>{keyword}</i>
         </p>
         {searchData.items &&
           searchData.items.map((item, i) => {
             return (
-              <NavLink key={item.address} to={`/${item.address}`}>
-                <li onClick={RemoveSearchResult}>{item.address}</li>
+              <NavLink
+                onClick={RemoveSearchResult}
+                key={i}
+                to={`/Forestillinger_Events/${item.id}`}
+              >
+                <li>{item.title}</li>
               </NavLink>
             );
           })}
       </ul>
     );
   };
-  
 
   return (
     <>
-      <form onSubmit={handleSubmit(getSearchResult)} autoComplete="off" id="Search">
+      <form
+        onSubmit={handleSubmit(getSearchResult)}
+        autoComplete="off"
+        id="Search"
+      >
         <div>
           <input
             placeholder="Indtast søgord"
@@ -61,13 +67,14 @@ const Search = (props) => {
             onFocus={(e) => (e.target.value = "")}
             onClick={RemoveSearchResult}
           />
-          <button><FaSearch /></button>
+          <button>
+            <FaSearch />
+          </button>
         </div>
         {keyword && <SearchResult keyword={keyword} />}
       </form>
     </>
   );
-
 };
 
 export { Search };

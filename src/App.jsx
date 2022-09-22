@@ -15,9 +15,9 @@ import { Login } from "./page/login/Login.jsx";
 import { Profile } from "./page/Profile.jsx";
 import { Loader, useLoader } from "./comp/PageLoader.jsx";
 
-import { ProductList } from "./page/products/ProductList.jsx";
-import { ProductDetails } from "./page/products/ProductDetails.jsx";
+import { EventDetails } from "./page/products/EventDetails.jsx";
 import { Forestillinger_Events } from "./page/products/Forestillinger_Events.jsx";
+import { Bestilling } from "./page/products/Bestilling";
 
 const Redirect = ({ to }) => {
   let navigate = useNavigate();
@@ -45,11 +45,19 @@ function App() {
           <Route
             path="/Forestillinger_Events"
             element={
-              <Forestillinger_Events title={"Forestillinger & events"} />} />
+              <Forestillinger_Events title={"Forestillinger & events"} />
+            }
+          />
 
           <Route
-            path="/Forestillinger_Events/:product_id"
-            element={<ProductDetails title={"ProductDetails"} />} />
+            path="/Forestillinger_Events/:event_id"
+            element={<EventDetails title={"EventDetails"} />}
+          />
+
+          <Route
+            path="/Forestillinger_Events/:Bestilling/:event_id"
+            element={<Bestilling title={"Bestilling"} />}
+          />
 
           {/* "Route" for when "login-in" */}
           {loginData.access_token && (
