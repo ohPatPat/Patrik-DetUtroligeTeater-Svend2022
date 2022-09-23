@@ -30,7 +30,7 @@ export const Nav = (props) => {
 
         <li>
           <NavLink to="/Login" onClick={props.click}>
-            {loginData.access_token ? "Log ud" : "Login"}
+            {loginData.access_token ? "min side" : "Login"}
           </NavLink>
         </li>
       </ul>

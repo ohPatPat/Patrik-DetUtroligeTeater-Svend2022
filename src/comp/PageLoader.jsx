@@ -11,11 +11,11 @@ export const Loader = () => {
     // Check if the page has already loaded
     if (document.readyState === "complete") {
       setTimeout(() => {
-        console.log("ready");
+        console.log("Siden har loaded");
         setPlayAnimation(true);
       }, 1500);
     } else {
-      console.log("notready");
+      console.log("Siden har ikke loaded");
       setPlayAnimation(false);
     }
   };

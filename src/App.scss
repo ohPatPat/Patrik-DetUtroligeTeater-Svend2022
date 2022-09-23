@@ -11,6 +11,17 @@
   color: gray;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
 //COLOR MODS
 $Prim: #d39d5b;
 $Sec: #ad7a51;
@@ -147,7 +158,7 @@ header {
   }
   .notActive,
   .Active {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -355,7 +366,6 @@ main {
         display: flex;
         overflow: hidden;
         transition: 5s;
-        z-index: 0;
         div {
           width: 40%;
           height: 100%;
@@ -621,13 +631,138 @@ main {
       }
     }
   }
-  &#Login {
+  &#Bestilling {
+    #Wrapper {
+      display: flex;
+      flex-direction: column;
+      border: 0.5vw solid $Sec;
+    }
+    h1 {
+      display: none;
+    }
+    img {
+      width: 100%;
+      height: 45vw;
+      object-fit: cover;
+      border: 1.5vw solid $Sec;
+    }
+    form {
+      padding: 4vw;
+      display: flex;
+      flex-direction: column;
+      gap: 2vw;
+      .InputWrapper,
+      .InputWrapperError {
+        display: flex;
+        flex-direction: column;
+        gap: 1vw;
+        &.InputWrapperError {
+          input {
+            border: solid 0.5vw red;
+          }
+        }
+        input {
+          color: $Prim;
+          font-weight: 600;
+          width: 100%;
+          padding: 2vw;
+          border: solid 1px gray;
+          border-radius: 5px;
+          box-shadow: 0px 0px 6px #04040475;
+
+          &::placeholder {
+            opacity: 50%;
+            text-transform: uppercase;
+          }
+          &.Correct {
+            border: solid 1px green;
+          }
+          &.NotCorrect {
+            border: solid 1px red;
+          }
+        }
+      }
+      span {
+        color: red;
+        font-size: 3.5vw;
+      }
+
+      button {
+        background-color: $Prim;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 2vw;
+        margin-right: 3vw;
+        box-shadow: 0px 0px 6px #04040475;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+    }
+    .InputWrapper {
+      &:nth-child(7) {
+        margin: 3vw 0;
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        gap: 2vw;
+      }
+    }
+    .container {
+      position: relative;
+      width: 8vw;
+      height: 8vw;
+      border-radius: 50%;
+      overflow: hidden;
+      user-select: none;
+      input {
+        position: relative;
+        opacity: 0%;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 2;
+        &:checked ~ .Checkmark {
+          background-color: $Third;
+          border: solid $Third 3px;
+        }
+        &:hover ~ .Checkmark {
+          background-color: $Sec;
+        }
+      }
+      .Checkmark,
+      .RedCheckmark {
+        border-radius: 50%;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        border: solid $Sec 3px;
+        cursor: pointer;
+        z-index: -1;
+
+        &.RedCheckmark {
+          background-color: $Sec;
+          pointer-events: none;
+          cursor: none;
+        }
+      }
+    }
+  }
+  &#Minside {
     display: flex;
     flex-direction: column;
-    gap: 4vw;
+    gap: 1vw;
+    h1{
+      font-family: $Playfair;
+      font-size: 10vw;
+    }
     p {
       font-size: 4vw;
-      padding-bottom: 4vw;
+      padding-bottom: 1vw;
       b {
         font-weight: 600;
         color: $Prim;
@@ -678,6 +813,168 @@ main {
     }
     #LogoutButton {
       margin-top: 5vw;
+    }
+    #Admin {
+      float: right;
+      display: flex;
+      justify-content: right;
+      flex-direction: column;
+
+      button {
+        text-transform: uppercase;
+        font-weight: 600;
+        width: 100%;
+      }
+    }
+    .EditWrapper{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      h3{
+        margin-top: 4vw;
+        font-size: 5vw;
+        text-transform: uppercase;
+      }
+    }
+    table {
+      padding-top: 4vw;
+      width: 100%;
+      thead {
+        tr {
+          th {
+            text-align: left;
+            text-transform: uppercase;
+          }
+        }
+      }
+      tbody {
+        hr {
+          width: 100%;
+        }
+        tr {
+          td {
+            border-bottom: solid 1px gray;
+
+            button {
+              float: right;
+              background-color: #30454c00;
+              color: none;
+              border: none;
+              width: 5vw;
+              border-radius: 0;
+              padding: 0vw;
+              margin-right: 0;
+              box-shadow: none;
+              svg {
+                fill: $Sec;
+                width: 100%;
+                height: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+          form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2vw;
+        .InputWrapper,
+        .InputWrapperError {
+          display: flex;
+          flex-direction: column;
+          gap: 1vw;
+          &.InputWrapperError {
+            input,
+            textarea {
+              border: solid 3px red;
+            }
+          }
+          input,
+          textarea {
+            width: 100%;
+            padding: 2vw;
+            border: solid 1px gray;
+            border-radius: 5px;
+            box-shadow: 0px 0px 6px #04040475;
+
+            &.Correct {
+              border: solid 1px green;
+            }
+            &.NotCorrect {
+              border: solid 1px red;
+            }
+          }
+        }
+        span {
+          color: red;
+          font-size: 3.5vw;
+          font-weight: 600;
+        }
+      }
+      button {
+        background-color: $Prim;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 2vw;
+        margin-right: 3vw;
+        box-shadow: 0px 0px 6px #04040475;
+        font-weight: 600;
+      }
+  }
+  &#Edit{
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 2vw;
+      .InputWrapper,
+      .InputWrapperError {
+        display: flex;
+        flex-direction: column;
+        gap: 1vw;
+        &.InputWrapperError {
+          input,
+          textarea {
+            border: solid 3px red;
+          }
+        }
+        input,
+        textarea {
+          width: 100%;
+          padding: 2vw;
+          border: solid 1px gray;
+          border-radius: 5px;
+          box-shadow: 0px 0px 6px #04040475;
+
+          &.Correct {
+            border: solid 1px green;
+          }
+          &.NotCorrect {
+            border: solid 1px red;
+          }
+        }
+      }
+      span {
+        color: red;
+        font-size: 3.5vw;
+        font-weight: 600;
+      }
+    }
+    button {
+      background-color: $Prim;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 2vw;
+      margin-right: 3vw;
+      box-shadow: 0px 0px 6px #04040475;
+      font-weight: 600;
+    }
+    a{
+      text-decoration: underline;
     }
   }
 }

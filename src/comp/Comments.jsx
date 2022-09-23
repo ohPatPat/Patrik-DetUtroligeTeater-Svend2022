@@ -44,6 +44,10 @@ export const CommentsForm = ({ event_id }) => {
     formData.append("comment", data.comment);
     console.log(...formData);
     const result = await axios.post(endpoint, formData, options);
+    if (result) {
+      window.location.reload()
+    }
+
   };
   return (
     <form autoComplete="off" onSubmit={handleSubmit(submitForm)}>
@@ -162,29 +166,39 @@ export const BestilingsForm = ({ event_id }) => {
   const { loginData } = useAuth();
 
   const submitForm = async (data, e) => {
-    e.target.reset();
     const formData = new FormData(e.target);
-    formData.append("firstname", data.firstname);
-    formData.append("lastname", data.lastname);
-    formData.append("address", data.address);
-    formData.append("zipcode", data.zipcode);
-    formData.append("email", data.email);
+    console.log(...formData);
+
     try {
       const endpoint =
         "https://api.mediehuset.net/detutroligeteater/reservations";
-      const result = await axios.post(endpoint, formData, options);
-      console.log(result);
-      console.log(endpoint);
       const options = {
         headers: {
           Authorization: `Bearer ${loginData.access_token}`,
         },
       };
+      const result = await axios.post(endpoint, formData, options);
+      if (result) {
+        window.location.reload()
+      }  
     } catch (err) {
       setError("Kunne ikke send");
     }
-    // console.log(...formData);
   };
+  const [isFetchSeats, setFetchSeats] = useState([]);
+  useEffect(() => {
+    const getFetchSeats = async () => {
+      try {
+        const result = await axios.get(
+          `https://api.mediehuset.net/detutroligeteater/seats/${event_id}`
+        );
+        setFetchSeats(result.data.items);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getFetchSeats();
+  }, []);
   return (
     <form autoComplete="off" onSubmit={handleSubmit(submitForm)}>
       <input type="hidden" value={event_id} {...register("event_id")} />
@@ -279,9 +293,7 @@ export const BestilingsForm = ({ event_id }) => {
       </div>
 
       <div
-        className={
-          Error || errors.email ? "InputWrapperError" : "InputWrapper"
-        }
+        className={Error || errors.email ? "InputWrapperError" : "InputWrapper"}
       >
         <input
           placeholder="email"
@@ -300,10 +312,36 @@ export const BestilingsForm = ({ event_id }) => {
           <span>Du skal minimum brug 4 bogstaver</span>
         )}
       </div>
-
+      <div
+        className={Error || errors.seats ? "InputWrapperError" : "InputWrapper"}
+      >
+        {isFetchSeats &&
+          isFetchSeats.map((apiRoute, i) => {
+            return (
+              <div className="container" key={i}>
+                <input
+                  value={apiRoute.id}
+                  name="seats[]"
+                  placeholder="seats"
+                  type="checkbox"
+                />
+                <span
+                  className={
+                    `${apiRoute.is_reserved}` === "0"
+                      ? "Checkmark"
+                      : "RedCheckmark"
+                  }
+                ></span>
+              </div>
+            );
+          })}
+        {errors.seats?.type === "required" && (
+          <span>Du skal udfylde seats</span>
+        )}
+      </div>
 
       <div>
-        <button onClick={inputFocus}>Send</button>
+        <button onClick={inputFocus}>Godkend bestilling</button>
         <button type="reset" onClick={inputFocus}>
           Nulstil
         </button>

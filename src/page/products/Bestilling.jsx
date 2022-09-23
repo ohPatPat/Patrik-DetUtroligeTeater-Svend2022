@@ -1,16 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
-import { BestilingsForm, CommentsForm, CommentsList } from "../../comp/Comments.jsx";
-import { Meta, MetaDetails } from "../../comp/Meta.jsx";
+import { useParams } from "react-router-dom";
+import { BestilingsForm } from "../../comp/Comments.jsx";
+import { Meta } from "../../comp/Meta.jsx";
 import { useAuth } from "../login/Auth.js";
-import { LoginComp } from "../login/Login.jsx";
-
-
 
 export const Bestilling = (props) => {
-
-
+  const { loginData } = useAuth();
   const { event_id } = useParams();
   const [eventData, setEventData] = useState({});
   useEffect(() => {
@@ -27,9 +23,11 @@ export const Bestilling = (props) => {
     getEventData();
   }, [event_id]);
   return (
-    <MetaDetails title={"cake"}>
+    <Meta title={props.title}>
+      <section id="Wrapper">
         <img src={eventData.image_large} alt="" />
-        <BestilingsForm event_id={event_id}/>
-    </MetaDetails>
+        {loginData ? <BestilingsForm event_id={event_id} /> : <p>Du skal login</p>}
+      </section>
+    </Meta>
   );
 };

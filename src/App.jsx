@@ -18,6 +18,7 @@ import { Loader, useLoader } from "./comp/PageLoader.jsx";
 import { EventDetails } from "./page/products/EventDetails.jsx";
 import { Forestillinger_Events } from "./page/products/Forestillinger_Events.jsx";
 import { Bestilling } from "./page/products/Bestilling";
+import { Edit } from "./page/login/Edit";
 
 const Redirect = ({ to }) => {
   let navigate = useNavigate();
@@ -39,8 +40,6 @@ function App() {
           {/* Start "route" */}
           <Route index element={<Home title={"Home"} />} />
 
-          {/* Normal "routes" */}
-          <Route path="/Login" element={<Login title={"Login"} />} />
 
           <Route
             path="/Forestillinger_Events"
@@ -59,10 +58,8 @@ function App() {
             element={<Bestilling title={"Bestilling"} />}
           />
 
-          {/* "Route" for when "login-in" */}
-          {loginData.access_token && (
-            <Route path="/Profile" element={<Profile title={"Profile"} />} />
-          )}
+            <Route path="/Login" element={<Login title={"Min side"} />} />
+            <Route path="/Login/:review_id" element={<Edit title={"Edit"} />} />
 
           {/* "Route" for not pages that cant be found */}
           <Route path="*" element={<NotFound title={"PageNotFound"} />} />

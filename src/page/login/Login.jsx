@@ -3,7 +3,9 @@ import { useAuth } from "./Auth.js";
 import { Meta } from "../../comp/Meta.jsx";
 
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { NavLink } from "react-router-dom";
 
 export const Login = (props) => {
   const {
@@ -51,10 +53,8 @@ export const Login = (props) => {
   if (loginData) {
     if (loginData.username === "pada" || loginData.username === "Patrik") {
       loginData.username = "Patrik";
-      console.log(loginData.username);
     } else {
       loginData.username = "Lærer";
-      console.log(loginData.username);
     }
   }
 
@@ -126,17 +126,185 @@ export const Login = (props) => {
         </form>
       ) : (
         <div>
-          <p>
-            Du er logget ind som <b>{loginData.username}</b>
-          </p>
-          <button onClick={logOut}>Log ud</button>
+          <div id="Admin">
+            <p>
+              Du er logget ind som <b>{loginData.username}</b>
+            </p>
+            <button onClick={logOut}>Log ud</button>
+          </div>
+          <AdminBesked />
+          <AdminKob />
         </div>
       )}
     </Meta>
   );
 };
 
+export const AdminBesked = () => {
+  const { loginData } = useAuth();
+  const [data, setData] = useState([]);
 
+  useEffect(() => {
+    const getAdmin = async () => {
+      try {
+        const result = await axios.get(
+          `https://api.mediehuset.net/detutroligeteater/reviews`
+        );
+        if (result.data) {
+          setData(result.data.items);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getAdmin();
+  }, []);
+
+  //Const til at slette comment via id
+  const deleteReviw = async (id) => {
+    console.log(id);
+    try {
+      //Bruger authHeader til at tjekke om sessionStorage eksisterer
+      const result = await axios.delete(
+        `https://api.mediehuset.net/detutroligeteater/reviews/${id}`,
+        { headers: { Authorization: `Bearer ${loginData.access_token}` } }
+      );
+      if (result) {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  return (
+    <>
+      {/*Conditional ternary operator
+            bruger kommantar skal kun vises ved login*/}
+      {!loginData ? (
+        <></>
+      ) : (
+        <section className="EditWrapper">
+          <h3>Mine ANMELDELSER</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>FORESTILLING</th>
+                <th>EMNE</th>
+                <th>Rediger </th>
+                <th>Slet</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data
+                .filter((user) => user.user_id == loginData.user_id)
+                .map((apiRoute, i) => {
+                  return (
+                    <tr key={i}>
+                      <td>
+                        {apiRoute.event_title}, {apiRoute.stage_name}
+                      </td>
+                      <td>{apiRoute.subject}</td>
+                      <td>
+                        <button>
+                          <NavLink to={apiRoute.id}>
+                            <AiFillEdit />
+                          </NavLink>
+                        </button>
+                      </td>
+                      <td>
+                        <button onClick={() => deleteReviw(apiRoute.id)}>
+                          <AiFillDelete />
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </section>
+      )}
+    </>
+  );
+};
+export const AdminKob = (id) => {
+  console.log(id);
+
+  const { loginData } = useAuth();
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const getAdmin = async (id) => {
+      try {
+        const result = await axios.get(
+          `https://api.mediehuset.net/detutroligeteater/reservations`,
+          { headers: { Authorization: `Bearer ${loginData.access_token}` } }
+        );
+        console.log(result);
+        if (result.data) {
+          setData(result.data.items);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getAdmin();
+  }, []);
+
+  //Const til at slette comment via id
+  const deleteReviw = async (id) => {
+    console.log(id);
+    try {
+      //Bruger authHeader til at tjekke om sessionStorage eksisterer
+      const result = await axios.delete(
+        `https://api.mediehuset.net/detutroligeteater/reservations/${id}`,
+        { headers: { Authorization: `Bearer ${loginData.access_token}` } }
+      );
+      if (result) {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  return (
+    <>
+      {/*Conditional ternary operator
+            bruger kommantar skal kun vises ved login*/}
+      {!loginData ? (
+        <></>
+      ) : (
+        <section className="EditWrapper">
+          <h3>Mine reservationer</h3>
+
+          <table>
+            <thead>
+              <tr>
+                <th>FORESTILLING</th>
+                <th>Slet</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data
+                .filter((user) => user.user_id == loginData.user_id)
+                .map((apiRoute, i) => {
+                  console.log(apiRoute);
+                  return (
+                    <tr key={i}>
+                      <td>{apiRoute.event_title}</td>
+                      <td>
+                        <button onClick={() => deleteReviw(apiRoute.id)}>
+                          <AiFillDelete />
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </section>
+      )}
+    </>
+  );
+};
 
 export const LoginComp = (props) => {
   const {

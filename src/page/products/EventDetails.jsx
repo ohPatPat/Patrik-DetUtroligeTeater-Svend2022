@@ -64,7 +64,7 @@ export const EventDetails = (props) => {
     getEventData();
   }, [event_id]);
   return (
-    <MetaDetails title={eventData.title}>
+    <MetaDetails title={props.title}>
       <figure>
         <img src={eventData.image_large} alt={eventData.image_large} />
         <figcaption>
