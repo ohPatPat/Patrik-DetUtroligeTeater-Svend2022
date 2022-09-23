@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { CommentsForm, CommentsList } from "../../comp/Comments.jsx";
-import { Meta, MetaDetails } from "../../comp/Meta.jsx";
+import { Meta } from "../../comp/Meta.jsx";
 import { useAuth } from "../login/Auth.js";
 import { LoginComp } from "../login/Login.jsx";
 
@@ -41,10 +41,8 @@ export const EventDetails = (props) => {
   const ShowActors = () => {
     if (!isShowActors) {
       setShowActors(true);
-      console.log(isShowActors);
     } else {
       setShowActors(false);
-      console.log(isShowActors);
     }
   };
 
@@ -64,7 +62,7 @@ export const EventDetails = (props) => {
     getEventData();
   }, [event_id]);
   return (
-    <MetaDetails title={props.title}>
+    <Meta title={props.title}>
       <figure>
         <img src={eventData.image_large} alt={eventData.image_large} />
         <figcaption>
@@ -80,10 +78,10 @@ export const EventDetails = (props) => {
               </p>
             </div>
             <p className="Pris">BILLETPRIS: {eventData.price} DKK</p>
-            <hr />
           </section>
+          <hr />
           <section id="TitleWrapper">
-            <h1>{eventData.title}</h1>
+            <h1 id="h1">{eventData.title}</h1>
             <p>
               <NavLink to={`/Forestillinger_Events/Bestilling/${eventData.id}`}>Køb billet</NavLink>
             </p>
@@ -128,6 +126,6 @@ export const EventDetails = (props) => {
 		  </> )}
         </footer>
       </figure>
-    </MetaDetails>
+    </Meta>
   );
 };

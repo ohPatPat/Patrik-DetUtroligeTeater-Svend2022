@@ -5,31 +5,19 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  useNavigate,
 } from "react-router-dom";
-import { useEffect } from "react";
 import { NotFound } from "./page/NotFound.jsx";
-import { useAuth } from "./page/login/Auth.js";
 import { Home } from "./page/Home.jsx";
 import { Login } from "./page/login/Login.jsx";
-import { Profile } from "./page/Profile.jsx";
-import { Loader, useLoader } from "./comp/PageLoader.jsx";
+import { Loader } from "./comp/PageLoader.jsx";
 
 import { EventDetails } from "./page/products/EventDetails.jsx";
 import { Forestillinger_Events } from "./page/products/Forestillinger_Events.jsx";
 import { Bestilling } from "./page/products/Bestilling";
 import { Edit } from "./page/login/Edit";
 
-const Redirect = ({ to }) => {
-  let navigate = useNavigate();
-  useEffect(() => {
-    navigate(to);
-  });
-  return null;
-};
 
 function App() {
-  const { loginData } = useAuth();
 
   return (
     <>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useAuth } from "../page/login/Auth";
 
 const FriendlyDate = (prop) => {
@@ -102,7 +102,6 @@ export const CommentsForm = ({ event_id }) => {
           Nulstil
         </button>
       </div>
-      {/* Tjekker om besked er true og viser den */}
       {Error && <span>{Error}</span>}
     </form>
   );
@@ -346,7 +345,6 @@ export const BestilingsForm = ({ event_id }) => {
           Nulstil
         </button>
       </div>
-      {/* Tjekker om besked er true og viser den */}
       {Error && <span>{Error}</span>}
     </form>
   );

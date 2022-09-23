@@ -26,14 +26,14 @@ const Search = (props) => {
           `https://api.mediehuset.net/detutroligeteater/events/search/${keyword}`
         );
         setSearchData(result.data);
+
       };
       getData();
     }, [keyword, setSearchData]);
-
     return (
       <ul id="SearchResult">
         <p>
-          Fandt {searchData.num_items} resultater på ordet <i>{keyword}</i>
+          Fandt {searchData.count} resultater på ordet <i>{keyword}</i>
         </p>
         {searchData.items &&
           searchData.items.map((item, i) => {

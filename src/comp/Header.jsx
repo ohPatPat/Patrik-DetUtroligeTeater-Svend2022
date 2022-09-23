@@ -38,9 +38,11 @@ export const Header = () => {
       <NavLink to="/">
       <img src={Icon_Logo} alt="Det Utrolige Teater logo" loading="lazy"/>
       </NavLink>
+      <div id="HeaderWrapper">
       <Search></Search>
       <Nav identify={"HeaderNav"}/>
       <BurgerMenu />
+      </div>
     </header >
   );
 };

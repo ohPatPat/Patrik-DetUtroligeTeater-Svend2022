@@ -1,10 +1,8 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Squash as Hamburger, Squash } from "hamburger-react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../page/login/Auth.js";
-import { Login } from "../page/login/Login.jsx";
 
-const BurgerContext = createContext();
 
 export const Nav = (props) => {
   const { loginData } = useAuth();

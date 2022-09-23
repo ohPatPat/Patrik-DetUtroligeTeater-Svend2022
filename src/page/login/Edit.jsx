@@ -1,4 +1,4 @@
-import { Link, NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -8,7 +8,6 @@ import { Meta } from "../../comp/Meta.jsx";
 export const Edit = (props) => {
   const { loginData } = useAuth();
   const { review_id } = useParams();
-  console.log(review_id);
   const {
     register,
     handleSubmit,

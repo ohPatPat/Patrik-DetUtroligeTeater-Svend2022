@@ -1,14 +1,12 @@
 import { RotatingLines } from "react-loader-spinner";
 import { useState } from "react";
-import { useAuth } from "../page/login/Auth";
 // https://npm.runkit.com/react-loader-spinner
 
 export const Loader = () => {
   const [playAnimation, setPlayAnimation] = useState(false);
 
-  // This will run one time after the component mounts
   document.onreadystatechange = () => {
-    // Check if the page has already loaded
+    
     if (document.readyState === "complete") {
       setTimeout(() => {
         console.log("Siden har loaded");
@@ -27,6 +25,10 @@ export const Loader = () => {
     document.body.style.height = "auto";
     document.body.style.overflow = "auto";
   }
+
+
+
+  
 
   return (
     <>

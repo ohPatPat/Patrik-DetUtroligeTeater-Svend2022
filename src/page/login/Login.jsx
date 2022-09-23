@@ -25,10 +25,10 @@ export const Login = (props) => {
   };
 
   const sendLoginRequest = async (data, e) => {
-    e.target.reset();
     const formData = new FormData();
     formData.append("username", data.username);
     formData.append("password", data.password);
+    e.target.reset();
     try {
       const url = "https://api.mediehuset.net/token";
       const result = await axios.post(url, formData);
@@ -61,7 +61,6 @@ export const Login = (props) => {
   return (
     <Meta title={props.title}>
       {!loginData && !loginData.username ? (
-        // Closures funtion here - I end a imported funktion (handleSubmit) via a new funktion (sendLoginRequest)
         <form onSubmit={handleSubmit(sendLoginRequest)}>
           <div
             className={
@@ -121,7 +120,6 @@ export const Login = (props) => {
               Nulstil
             </button>
           </div>
-          {/* Tjekker om besked er true og viser den */}
           {Error && <span>{Error}</span>}
         </form>
       ) : (
@@ -162,7 +160,6 @@ export const AdminBesked = () => {
 
   //Const til at slette comment via id
   const deleteReviw = async (id) => {
-    console.log(id);
     try {
       //Bruger authHeader til at tjekke om sessionStorage eksisterer
       const result = await axios.delete(
@@ -227,7 +224,6 @@ export const AdminBesked = () => {
   );
 };
 export const AdminKob = (id) => {
-  console.log(id);
 
   const { loginData } = useAuth();
   const [data, setData] = useState([]);
@@ -238,7 +234,6 @@ export const AdminKob = (id) => {
           `https://api.mediehuset.net/detutroligeteater/reservations`,
           { headers: { Authorization: `Bearer ${loginData.access_token}` } }
         );
-        console.log(result);
         if (result.data) {
           setData(result.data.items);
         }
@@ -249,11 +244,8 @@ export const AdminKob = (id) => {
     getAdmin();
   }, []);
 
-  //Const til at slette comment via id
   const deleteReviw = async (id) => {
-    console.log(id);
     try {
-      //Bruger authHeader til at tjekke om sessionStorage eksisterer
       const result = await axios.delete(
         `https://api.mediehuset.net/detutroligeteater/reservations/${id}`,
         { headers: { Authorization: `Bearer ${loginData.access_token}` } }
@@ -267,8 +259,6 @@ export const AdminKob = (id) => {
   };
   return (
     <>
-      {/*Conditional ternary operator
-            bruger kommantar skal kun vises ved login*/}
       {!loginData ? (
         <></>
       ) : (
@@ -286,7 +276,6 @@ export const AdminKob = (id) => {
               {data
                 .filter((user) => user.user_id == loginData.user_id)
                 .map((apiRoute, i) => {
-                  console.log(apiRoute);
                   return (
                     <tr key={i}>
                       <td>{apiRoute.event_title}</td>
@@ -352,10 +341,8 @@ export const LoginComp = (props) => {
   if (loginData) {
     if (loginData.username === "pada" || loginData.username === "Patrik") {
       loginData.username = "Patrik";
-      console.log(loginData.username);
     } else {
       loginData.username = "Lærer";
-      console.log(loginData.username);
     }
   }
 
