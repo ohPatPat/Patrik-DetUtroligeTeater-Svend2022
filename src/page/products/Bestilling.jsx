@@ -25,7 +25,7 @@ export const Bestilling = (props) => {
   return (
     <Meta title={props.title}>
       <section id="Wrapper">
-        <img src={eventData.image_large} alt="" />
+        <img src={eventData.image_small} alt="" />
         {loginData ? <BestilingsForm event_id={event_id} /> : <p>Du skal login</p>}
       </section>
     </Meta>

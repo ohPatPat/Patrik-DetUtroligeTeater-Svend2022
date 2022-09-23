@@ -1,4 +1,4 @@
-  const cacheName = 'Cache_v3';
+  const cacheName = 'Cache_v4';
 
   let urlsToCache = [
     './index.html',

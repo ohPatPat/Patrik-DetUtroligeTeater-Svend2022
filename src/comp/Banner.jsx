@@ -64,7 +64,7 @@ export const Banner = () => {
                 <h2>{apiRoute.title}</h2>
                 <h3>{apiRoute.genre}</h3>
               </figcaption>
-              <img src={apiRoute.image_large} alt={apiRoute.image_large} />
+              <img src={apiRoute.image_small} alt={apiRoute.image_small} />
             </figure>
           );
         })}
@@ -95,7 +95,7 @@ export const ThreeCards = () => {
         isFetchEvents.slice(0, 3).map((apiRoute, i) => {
           return (
             <figure key={i}>
-              <img src={apiRoute.image_medium} alt={apiRoute.image_medium} />
+              <img src={apiRoute.image_small} alt={apiRoute.image_small} />
               <figcaption>
                 <p className="Scene">{apiRoute.stage_name}</p>
                 <p className="Dato">
